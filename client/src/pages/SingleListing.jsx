@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 import InquiryList from "../components/CommentList";
 import InquiryForm from "../components/CommentForm";
 import UpdateListingForm from "../components/updateMonsterForm";
 import { QUERY_SINGLE_LISTING } from "../utils/queries";
+import { REMOVE_LISTING } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const CATEGORY_STYLES = {
@@ -26,11 +27,24 @@ const RISK_STYLES = {
 
 const SingleListing = () => {
   const { listingId } = useParams();
+  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY_SINGLE_LISTING, {
     variables: { listingId },
   });
   const listing = data?.listing || {};
   const [showEditModal, setShowEditModal] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  const [removeListing] = useMutation(REMOVE_LISTING);
+
+  const handleDelete = async () => {
+    try {
+      await removeListing({ variables: { listingId: listing._id } });
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (loading) {
     return (
@@ -63,11 +77,31 @@ const SingleListing = () => {
             </span>
             <span className={statusClass}>{listing.status}</span>
           </div>
-          {Auth.loggedIn() && (
-            <button className="btn btn-secondary btn-sm" onClick={() => setShowEditModal(true)}>
-              Edit Listing
-            </button>
-          )}
+          {Auth.loggedIn() &&
+            Auth.getProfile().data.username === listing.createdBy && (
+              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                <button className="btn btn-secondary btn-sm" onClick={() => setShowEditModal(true)}>
+                  Edit Listing
+                </button>
+                {confirmDelete ? (
+                  <>
+                    <span style={{ fontFamily: "var(--font-sc)", fontSize: "0.7rem", color: "var(--text-muted)", letterSpacing: "0.06em" }}>
+                      Are you sure?
+                    </span>
+                    <button className="btn btn-danger btn-sm" onClick={handleDelete}>
+                      Yes, Pull It
+                    </button>
+                    <button className="btn btn-secondary btn-sm" onClick={() => setConfirmDelete(false)}>
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button className="btn btn-danger btn-sm" onClick={() => setConfirmDelete(true)}>
+                    Remove Listing
+                  </button>
+                )}
+              </div>
+            )}
         </div>
 
         <h1 className="listing-entry-name">{listing.itemName}</h1>

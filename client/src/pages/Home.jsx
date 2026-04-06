@@ -5,7 +5,7 @@ import { QUERY_LISTINGS } from "../utils/queries";
 import Auth from "../utils/auth";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_LISTINGS);
+  const { loading, data } = useQuery(QUERY_LISTINGS, { variables: {} });
   const listings = data?.listings || [];
 
   return (

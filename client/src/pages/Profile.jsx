@@ -11,7 +11,13 @@ const Profile = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  const { loading: loadingListings, data: listingData } = useQuery(QUERY_LISTINGS);
+
+  const displayName = userParam || (Auth.loggedIn() ? Auth.getProfile().data.username : null);
+
+  const { loading: loadingListings, data: listingData } = useQuery(QUERY_LISTINGS, {
+    variables: { username: displayName },
+    skip: !displayName,
+  });
 
   const user     = data?.me || data?.user || {};
   const listings = listingData?.listings || [];
@@ -37,8 +43,6 @@ const Profile = () => {
       </div>
     );
   }
-
-  const displayName = userParam ? user.username : Auth.getProfile().data.username;
 
   return (
     <div>

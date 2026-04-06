@@ -11,8 +11,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_LISTINGS = gql`
-  query getListings {
-    listings {
+  query getListings($username: String) {
+    listings(username: $username) {
       _id
       itemName
       category
@@ -21,6 +21,7 @@ export const QUERY_LISTINGS = gql`
       region
       status
       description
+      createdBy
       inquiries {
         _id
         inquiryText
@@ -42,6 +43,7 @@ export const QUERY_SINGLE_LISTING = gql`
       region
       status
       description
+      createdBy
       inquiries {
         _id
         inquiryText

@@ -9,9 +9,9 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    listings: async (parent, { username } = {}) => {
-      const filter = username ? { createdBy: username } : {};
-      return Listing.find(filter).sort({ itemName: 1 });
+    listings: async (parent, args) => {
+      const filter = args?.username ? { createdBy: args.username } : {};
+      return Listing.find(filter).sort({ _id: -1 });
     },
     listing: async (parent, { listingId }) => {
       return Listing.findOne({ _id: listingId });

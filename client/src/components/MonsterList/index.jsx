@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CATEGORY_STYLES = {
   "Weaponry":       { background: "var(--cat-weaponry-bg)",    color: "var(--cat-weaponry-text)",    border: "#2a3050" },
@@ -18,6 +18,8 @@ const RISK_STYLES = {
 };
 
 const ListingBoard = ({ listings }) => {
+  const navigate = useNavigate();
+
   if (!listings.length) {
     return (
       <div className="empty-board">
@@ -35,7 +37,11 @@ const ListingBoard = ({ listings }) => {
         const statusClass = `status-stamp status-${listing.status?.toLowerCase()}`;
 
         return (
-          <div key={listing._id} className="listing-card">
+          <div
+            key={listing._id}
+            className="listing-card listing-card-link"
+            onClick={() => navigate(`/listings/${listing._id}`)}
+          >
             <div className="listing-card-top">
               <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", flexWrap: "wrap" }}>
                 <span
@@ -61,13 +67,8 @@ const ListingBoard = ({ listings }) => {
               <p className="listing-description">{listing.description}</p>
             </div>
 
-            <div className="listing-card-footer">
-              <Link
-                className="btn btn-crimson btn-block"
-                to={`/listings/${listing._id}`}
-              >
-                Inquire About This Item →
-              </Link>
+            <div className="listing-card-footer" style={{ color: "var(--crimson-bright)", fontFamily: "var(--font-sc)", fontSize: "0.75rem", letterSpacing: "0.1em" }}>
+              View Listing →
             </div>
           </div>
         );

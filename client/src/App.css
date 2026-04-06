@@ -482,6 +482,9 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
   border-left-color: var(--crimson);
   box-shadow: var(--shadow), 0 0 12px rgba(176,58,8,0.15);
 }
+.listing-card-link {
+  cursor: pointer;
+}
 
 .listing-card-top {
   display: flex;
