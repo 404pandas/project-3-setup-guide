@@ -1,0 +1,37 @@
+[
+  { "fromUser": "Yennefer of Vengerberg", "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "She is more capable than anyone on this board. Vouch without qualification." },
+  { "fromUser": "Geralt of Rivia",        "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "She can handle herself better than most. Trust her with anything." },
+  { "fromUser": "Triss Merigold",         "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "Fast learner. Reliable. Doesn't panic under pressure. Rare qualities." },
+  { "fromUser": "Regis",                  "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "Met her under extraordinary circumstances. Acquitted herself impeccably." },
+  { "fromUser": "Zoltan Chivay",          "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "Good lass. Solid contact. Doesn't ask for more than the job requires." },
+  { "fromUser": "Dandelion",              "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "I wrote a ballad about her. That should tell you everything you need to know." },
+  { "fromUser": "Vesemir",               "toUser": "Ciri of Cintra",      "type": "Vouched", "note": "Trained her myself. I don't say that lightly." },
+
+  { "fromUser": "Ciri of Cintra",         "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Taught me everything. Trust him with your life. I have. More than once." },
+  { "fromUser": "Yennefer of Vengerberg", "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Exasperating. Reliable. I'd rather work with him than anyone else on the Continent." },
+  { "fromUser": "Dandelion",              "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Best contact I have. Surly but dependable. The surliness is part of the package." },
+  { "fromUser": "Zoltan Chivay",          "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Saved my life twice. Saved my cargo once. Good witcher, better contact." },
+  { "fromUser": "Regis",                  "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Exceptionally trustworthy for a human. Highest recommendation." },
+  { "fromUser": "Triss Merigold",         "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "Long history. Trustworthy. Leave it at that." },
+  { "fromUser": "Vesemir",               "toUser": "Geralt of Rivia",     "type": "Vouched", "note": "I trained him. I'll vouch for him." },
+  { "fromUser": "Emhyr var Emreis",       "toUser": "Geralt of Rivia",     "type": "Burned",  "note": "Unreliable when personal matters interfere with professional obligations. Which is always." },
+
+  { "fromUser": "Ciri of Cintra",         "toUser": "Yennefer of Vengerberg", "type": "Vouched", "note": "She taught me to be ruthless when it matters. Invaluable contact. Don't waste her time." },
+  { "fromUser": "Geralt of Rivia",        "toUser": "Yennefer of Vengerberg", "type": "Vouched", "note": "Extremely capable. Extremely dangerous. Highly recommended for anything that requires both." },
+  { "fromUser": "Regis",                  "toUser": "Yennefer of Vengerberg", "type": "Vouched", "note": "Precise, demanding, occasionally terrifying. Exactly the kind of person you want handling sensitive acquisitions." },
+  { "fromUser": "Triss Merigold",         "toUser": "Yennefer of Vengerberg", "type": "Vouched", "note": "Competent. Reliable. We have history but that doesn't affect the professional assessment." },
+  { "fromUser": "Vesemir",               "toUser": "Yennefer of Vengerberg", "type": "Vouched", "note": "A sorceress worth trusting. I don't say that often." },
+
+  { "fromUser": "Ciri of Cintra",         "toUser": "Dandelion",           "type": "Vouched", "note": "He has contacts everywhere. Information moves through him like water. Useful, if you can tolerate the songs." },
+  { "fromUser": "Geralt of Rivia",        "toUser": "Dandelion",           "type": "Vouched", "note": "Talks too much. Knows everyone. Net positive." },
+  { "fromUser": "Zoltan Chivay",          "toUser": "Dandelion",           "type": "Vouched", "note": "Good prices, fair dealing. Buys me drinks sometimes. Five stars." },
+  { "fromUser": "Yennefer of Vengerberg", "toUser": "Dandelion",           "type": "Burned",  "note": "Talks. Constantly. About everything. To everyone. Do not share sensitive information with this man." },
+  { "fromUser": "Vesemir",               "toUser": "Dandelion",           "type": "Burned",  "note": "He wrote a song about Kaer Morhen. An unflattering one. We're not on good terms." },
+  { "fromUser": "Emhyr var Emreis",       "toUser": "Dandelion",           "type": "Burned",  "note": "A liability. Everything he learns becomes a song within the fortnight." },
+
+  { "fromUser": "Geralt of Rivia",        "toUser": "Regis",               "type": "Vouched", "note": "Reliable. Discrete. Doesn't ask unnecessary questions. Recommend without reservation." },
+  { "fromUser": "Geralt of Rivia",        "toUser": "Zoltan Chivay",       "type": "Vouched", "note": "Known him for years. Never been burned. Good dwarf." },
+  { "fromUser": "Geralt of Rivia",        "toUser": "Emhyr var Emreis",    "type": "Burned",  "note": "Do not trust. Will use you and discard you the moment it's convenient. Ask me how I know." },
+  { "fromUser": "Dandelion",              "toUser": "Zoltan Chivay",       "type": "Vouched", "note": "Solid. Dependable. Has never once let commerce get in the way of friendship, which is rare." },
+  { "fromUser": "Triss Merigold",         "toUser": "Regis",               "type": "Vouched", "note": "Unusual contact but exceptionally discreet. Recommended for sensitive work." }
+]

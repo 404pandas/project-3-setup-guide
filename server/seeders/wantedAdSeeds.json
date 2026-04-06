@@ -1,0 +1,62 @@
+[
+  {
+    "itemWanted": "Manticore Witcher Gear Diagrams — Any Piece",
+    "category": "Forbidden Texts",
+    "offeredPrice": "Up to 3,500 orens depending on completeness",
+    "urgency": "Urgent",
+    "region": "Anywhere — will travel",
+    "status": "Open",
+    "postedBy": "Geralt of Rivia",
+    "description": "Looking for any diagrams from the School of the Manticore. Don't care about provenance. Don't care about the story behind how you got them. Do care that they're genuine. I've been burned by forgeries twice already and the next person who tries it will regret it considerably more than I did."
+  },
+  {
+    "itemWanted": "Arachas Venom — Bulk Quantity",
+    "category": "Ingredients",
+    "offeredPrice": "180 orens per vial, 20+ vials",
+    "urgency": "Moderate",
+    "region": "Velen or Skellige preferred",
+    "status": "Open",
+    "postedBy": "Triss Merigold",
+    "description": "Ongoing requirement. If you can supply consistently, I'm interested in a standing arrangement. Quality matters — I'm using this for something that requires purity above 85%. Don't contact me with swamp runoff and call it venom. I will know immediately and I will tell everyone."
+  },
+  {
+    "itemWanted": "Any Written Account of the Conjunction of the Spheres",
+    "category": "Forbidden Texts",
+    "offeredPrice": "Negotiable — price is not the obstacle",
+    "urgency": "Casual",
+    "region": "Novigrad, Oxenfurt, or Toussaint",
+    "status": "Open",
+    "postedBy": "Yennefer of Vengerberg",
+    "description": "Contemporary accounts only — written within fifty years of the Conjunction itself. I have the academic texts. I have the Church's sanitised version. I am specifically looking for things the Church doesn't want me to have. Private correspondence, personal journals, field notes, anything. Discretion is mutual."
+  },
+  {
+    "itemWanted": "Reliable Silver — Not Plated",
+    "category": "Weaponry",
+    "offeredPrice": "Standard market rate plus 15%",
+    "urgency": "Moderate",
+    "region": "Mahakam preferred",
+    "status": "Open",
+    "postedBy": "Vesemir",
+    "description": "Need consistent access to high-purity silver ingots for smithing purposes. Dwarven-refined strongly preferred. I've been working around the Nilfgaardian trade restrictions for three seasons now and the workarounds are getting tedious. If you have a reliable supply line, let's talk."
+  },
+  {
+    "itemWanted": "Ofiri Spices — The Good Ones",
+    "category": "Contraband",
+    "offeredPrice": "Whatever the going rate is, I'm not haggling",
+    "urgency": "Desperate",
+    "region": "Novigrad",
+    "status": "Open",
+    "postedBy": "Dandelion",
+    "description": "This is not for any nefarious purpose. I am a man of refined tastes who has become accustomed to a certain quality of cuisine, and the blockade has made this unreasonably difficult. Specifically: saffron, cardamom, and whatever that red powder is that the Ofiri merchants used to bring. Please. I'm begging. The food here has been intolerably boring for six months."
+  },
+  {
+    "itemWanted": "Vampire Saliva — Fresh",
+    "category": "Ingredients",
+    "offeredPrice": "600 orens per sample",
+    "urgency": "Urgent",
+    "region": "Toussaint or Novigrad",
+    "status": "Fulfilled",
+    "postedBy": "Regis",
+    "description": "For purely academic research into the coagulation-inhibiting properties. I am aware of the irony. The donor must be willing and ideally compensated separately — I don't want stolen samples, the provenance affects the chemical composition. This is more delicate than it sounds."
+  }
+]

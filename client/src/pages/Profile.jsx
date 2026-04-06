@@ -2,6 +2,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import ListingForm from "../components/MonsterForm";
 import ListingBoard from "../components/MonsterList";
+import ReputationPanel from "../components/ReputationPanel";
 import { QUERY_USER, QUERY_ME, QUERY_LISTINGS } from "../utils/queries";
 import Auth from "../utils/auth";
 
@@ -67,7 +68,13 @@ const Profile = () => {
         </div>
       )}
 
-      <ListingForm />
+      <div style={{ marginTop: "2rem" }}>
+        <ReputationPanel username={displayName} />
+      </div>
+
+      <div style={{ marginTop: "2rem" }}>
+        <ListingForm />
+      </div>
     </div>
   );
 };

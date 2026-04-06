@@ -7,6 +7,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import SingleListing from "./pages/SingleListing";
 import Profile from "./pages/Profile";
+import WantedAds from "./pages/WantedAds";
+import Leaderboard from "./pages/Leaderboard";
 import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/listings/:listingId",
         element: <SingleListing />,
+      },
+      {
+        path: "/wanted",
+        element: <WantedAds />,
+      },
+      {
+        path: "/leaderboard",
+        element: <Leaderboard />,
       },
     ],
   },

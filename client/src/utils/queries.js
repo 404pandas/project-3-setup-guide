@@ -63,3 +63,63 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_WANTED_ADS = gql`
+  query getWantedAds($username: String) {
+    wantedAds(username: $username) {
+      _id
+      itemWanted
+      category
+      offeredPrice
+      urgency
+      region
+      description
+      postedBy
+      status
+      fulfilledByListing
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_SINGLE_WANTED_AD = gql`
+  query getSingleWantedAd($adId: ID!) {
+    wantedAd(adId: $adId) {
+      _id
+      itemWanted
+      category
+      offeredPrice
+      urgency
+      region
+      description
+      postedBy
+      status
+      fulfilledByListing
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_REPUTATION_FOR = gql`
+  query getReputationFor($username: String!) {
+    reputationFor(username: $username) {
+      _id
+      fromUser
+      toUser
+      type
+      note
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_LEADERBOARD = gql`
+  query getLeaderboard {
+    leaderboard {
+      username
+      vouches
+      burns
+      score
+    }
+  }
+`;

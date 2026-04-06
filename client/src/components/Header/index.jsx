@@ -45,6 +45,12 @@ const Header = () => {
         </Link>
 
         <nav className="header-nav">
+          <Link className="btn btn-light" to="/wanted">
+            Wanted Board
+          </Link>
+          <Link className="btn btn-light" to="/leaderboard">
+            Most Trusted
+          </Link>
           {Auth.loggedIn() ? (
             <>
               <Link className="btn btn-info" to="/me">

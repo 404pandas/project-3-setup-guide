@@ -122,6 +122,85 @@ export const REMOVE_INQUIRY = gql`
   }
 `;
 
+export const ADD_WANTED_AD = gql`
+  mutation addWantedAd(
+    $itemWanted: String!
+    $category: String!
+    $offeredPrice: String!
+    $urgency: String!
+    $region: String!
+    $description: String!
+  ) {
+    addWantedAd(
+      itemWanted: $itemWanted
+      category: $category
+      offeredPrice: $offeredPrice
+      urgency: $urgency
+      region: $region
+      description: $description
+    ) {
+      _id
+      itemWanted
+      category
+      offeredPrice
+      urgency
+      region
+      status
+      description
+      postedBy
+    }
+  }
+`;
+
+export const UPDATE_WANTED_AD = gql`
+  mutation updateWantedAd($adId: ID!, $status: String, $fulfilledByListing: String) {
+    updateWantedAd(adId: $adId, status: $status, fulfilledByListing: $fulfilledByListing) {
+      _id
+      status
+      fulfilledByListing
+    }
+  }
+`;
+
+export const REMOVE_WANTED_AD = gql`
+  mutation removeWantedAd($adId: ID!) {
+    removeWantedAd(adId: $adId) {
+      _id
+    }
+  }
+`;
+
+export const ADD_REPUTATION = gql`
+  mutation addReputation($toUser: String!, $type: String!, $note: String) {
+    addReputation(toUser: $toUser, type: $type, note: $note) {
+      _id
+      fromUser
+      toUser
+      type
+      note
+      createdAt
+    }
+  }
+`;
+
+export const UPDATE_REPUTATION = gql`
+  mutation updateReputation($reputationId: ID!, $type: String!, $note: String) {
+    updateReputation(reputationId: $reputationId, type: $type, note: $note) {
+      _id
+      type
+      note
+    }
+  }
+`;
+
+export const REMOVE_REPUTATION = gql`
+  mutation removeReputation($reputationId: ID!) {
+    removeReputation(reputationId: $reputationId) {
+      _id
+    }
+  }
+`;
+
 export const UPDATE_INQUIRY = gql`
   mutation updateInquiry(
     $listingId: ID!
