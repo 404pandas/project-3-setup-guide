@@ -1,228 +1,179 @@
 <div align="center">
 
-  <!-- Add badges using the following format: -->
-  <!-- ![Name](urlToShieldHere)(urlToGithubHere) -->
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Contributors](https://img.shields.io/github/contributors/404pandas/PARSR.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/PARSR/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/404pandas/PARSR.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/PARSR/network/members)
-[![Stargazers](https://img.shields.io/github/stars/404pandas/PARSR.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/PARSR/stargazers)
-[![Issues](https://img.shields.io/github/issues/404pandas/PARSR.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/PARSR/issues)
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-black.svg?style=plastic&logo=appveyor&logo=linkedin&colorB=555)](https://linkedin.com/in/404pandas)
+[![Contributors](https://img.shields.io/github/contributors/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/network/members)
+[![Stargazers](https://img.shields.io/github/stars/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/stargazers)
+[![Issues](https://img.shields.io/github/issues/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/issues)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-black.svg?style=plastic&logo=linkedin&colorB=555)](https://linkedin.com/in/404pandas)
 
 </div>
-
-<!-- PROJECT LOGO -->
 
 <div align="center">
-  <a href="https://github.com/404pandas/PARSR">
-    <img src="./client/src/assets/images/parsr-logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">PARSR</h3>
+  <h1>The Novigrad Underground</h1>
+  <p><em>Buy. Sell. Don't ask questions.</em></p>
 
-  <p align="center">
-    Project Animal Reunification Search & Rescue    <br />
-    <a href="https://www.allanimalrr.org/">
-      <img src="./client/src/assets/images/aarr.png" alt="Logo" width="80" height="80">
-    </a><br />
-    Brought to you by All Animal Rehabilitation & Release<br />
-    <a href="https://github.com/404pandas/PARSR"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/404pandas/PARSR">View Demo(Broken)</a>
-    ·
-    <a href="https://github.com/404pandas/PARSR/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/404pandas/PARSR/issues">Request Feature</a>
-
+  <p>
+    <a href="https://github.com/404pandas/project-3-setup-guide"><strong>Explore the docs »</strong></a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/404pandas/project-3-setup-guide/issues">Report Bug</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/404pandas/project-3-setup-guide/issues">Request Feature</a>
   </p>
+
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-<!-- ABOUT THE PROJECT -->
+---
 
 ## About The Project
 
-<!-- Add screenshots using the following format: -->
-<!-- ![Screenshot alt description](directPathOfScreenshots) -->
+The Novigrad Underground is a Witcher-themed black market trading board built on the MERN stack. It started as my own take on the Project 3 Setup Guide skeleton I built for bootcamp students — fully redesigned with new models, a custom visual identity, and features well beyond the original template.
 
-This project was built with the MERN stack and Apollo + GraphQL.
-It's currently not deployed until the prototype MVP is completed.
+Users can post listings and wanted ads, leave inquiries on items, vouch or burn other users, and climb a reputation leaderboard. All protected behind JWT auth with server-side ownership enforcement.
 
 ### Built With
 
 <div align="center">
 
-[![Javascript](https://img.shields.io/badge/Language-JavaScript-ff0000?style=plastic&logo=JavaScript&logoWidth=10)](https://javascript.info/)
-[![MongoDB](https://img.shields.io/badge/Database-MongoDB-80ff00?style=plastic&logo=MongoDB&logoWidth=10)](https://www.mongodb.com/home)
-[![Heroku](https://img.shields.io/badge/Cloud-Heroku-00ff00?style=plastic&logo=Heroku&logoWidth=10)](https://devcenter.heroku.com/categories/reference)
-[![Node.js](https://img.shields.io/badge/Framework-Node.js-ff0000?style=plastic&logo=Node.js&logoWidth=10)](https://nodejs.org/en/)
-[![React](https://img.shields.io/badge/Framework-React.js-ff8000?style=plastic&logo=React&logoWidth=10)](https://reactjs.org/docs/getting-started.html)
+[![JavaScript](https://img.shields.io/badge/Language-JavaScript-ff0000?style=plastic&logo=JavaScript&logoWidth=10)](https://javascript.info/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-80ff00?style=plastic&logo=MongoDB&logoWidth=10)](https://www.mongodb.com/)
+[![Node.js](https://img.shields.io/badge/Runtime-Node.js-ff0000?style=plastic&logo=Node.js&logoWidth=10)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Framework-Express-80ff00?style=plastic&logo=Express&logoWidth=10)](https://expressjs.com/)
-[![npm](https://img.shields.io/badge/Tools-npm-ff0000?style=plastic&logo=npm&logoWidth=10)](https://www.npmjs.com/)
-[![VS Code](https://img.shields.io/badge/IDE-VSCode-ff0000?style=plastic&logo=VisualStudioCode&logoWidth=10)](https://code.visualstudio.com/docs)
-[![MUI](https://img.shields.io/badge/Package-MUI-ff0000?style=plastic&logo=MUI&logoWidth=10)](https://mui.com/)
+[![React](https://img.shields.io/badge/Framework-React-ff8000?style=plastic&logo=React&logoWidth=10)](https://react.dev/)
+[![Apollo GraphQL](https://img.shields.io/badge/API-Apollo_GraphQL-ff0000?style=plastic&logo=apollographql&logoWidth=10)](https://www.apollographql.com/)
+[![Vite](https://img.shields.io/badge/Bundler-Vite-ff8000?style=plastic&logo=vite&logoWidth=10)](https://vitejs.dev/)
+[![Render](https://img.shields.io/badge/Cloud-Render-00ff00?style=plastic&logo=render&logoWidth=10)](https://render.com/)
 
 </div>
 
-<!-- GETTING STARTED -->
+---
+
+## Features
+
+- **Market Board** — post items for sale with category, risk level, region, and pricing. Listings are sorted newest-first. Only the owner can edit or delete their own.
+- **Wanted Board** — post what you're looking to acquire and what you'll pay. Mark fulfilled when a deal is done.
+- **Inquiries** — leave questions directly on a listing. Per-listing threads, editable by their authors.
+- **Reputation System** — vouch or burn other users. One rating per pair, enforced at the database level with a unique compound index. Score = vouches minus burns.
+- **Leaderboard** — ranks the most trusted contacts by reputation score using a MongoDB aggregation pipeline. All entries link through to that user's profile.
+- **User Profiles** — each user has a stash page showing their active listings and reputation panel.
+- **JWT Auth** — protected routes, ownership-gated edits and deletes, server-side identity. No client-supplied usernames trusted.
+
+---
 
 ## Getting Started
 
-Once completely built, this application will function as a deployed app on Heroku
+### Prerequisites
 
-### Local Installation / Testing
+- Node.js
+- A MongoDB Atlas cluster (or local MongoDB instance)
 
-1. Clone the rep
+### Installation
 
+1. Clone the repo
+
+```sh
+git clone https://github.com/404pandas/project-3-setup-guide.git
 ```
-git clone https://github.com/404pandas/PARSR.git
-```
 
-2. Install dependencies
+2. Install all dependencies
 
-```
+```sh
 npm run install
 ```
 
-3. Seed the database
+3. Create a `.env` file in the `server/` directory
 
+```sh
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET_KEY=your_secret_key
 ```
+
+4. Seed the database
+
+```sh
 npm run seed
 ```
 
-4. Launch the app in development environments
+5. Start the development server
 
-```
+```sh
 npm run develop
 ```
 
-5. Visit:
-
-[localhost]()
+6. Visit the app at:
 
 ```
-
+http://localhost:3000
 ```
 
-[graphQL]()
+GraphQL sandbox:
 
 ```
-
+http://localhost:3001/graphql
 ```
 
-<!-- USAGE EXAMPLES -->
+---
 
-## Usage
+## Deployment
 
-Once the app is functional, screenshots will be added in this section.
+Deployed on [Render](https://render.com) with MongoDB Atlas.
 
-<!-- ROADMAP -->
+**Build command:** `cd server && npm install && cd ../client && npm install --include=dev && npm run build`
+
+**Start command:** `npm start`
+
+**Required environment variables on Render:**
+- `NODE_ENV` = `production`
+- `MONGODB_URI`
+- `JWT_SECRET_KEY`
+
+---
 
 ## Roadmap
 
-#### MVP
+- [x] Market Board (listings)
+- [x] Wanted Board
+- [x] Inquiries on listings
+- [x] JWT authentication
+- [x] Ownership-gated edits and deletes
+- [x] Reputation system (vouch / burn)
+- [x] Leaderboard
+- [x] User profiles
+- [ ] Search and filtering on listings
+- [ ] Direct messaging between users
+- [ ] Notification system
 
-- [ ] Front End
+See [open issues](https://github.com/404pandas/project-3-setup-guide/issues) for proposed features and known bugs.
 
-  - [x] Routing
-  - [ ] Map (Markers, Search area)
-  - [x] User Auth
-  - [ ] User Profile Page
-  - [x] Landing Page
-  - [ ] Pet Page
-  - [ ] Owner Page
-  - [ ] Map Page
-  - [ ] Error Page
-  - [ ] 404 Page
-  - [ ] Login Form
-  - [ ] Sign Up Form
-  - [ ] Test react-ol-wrapper library
-  - [ ] ? Migrate from ol to react-ol-wrapper ?
-
-- [ ] Back End
-  - [x] Typedefs
-  - [x] Resolvers
-  - [x] Seeds
-  - [x] User Auth
-  - [ ] Migrate from MongoDB to Postgres (benefit more from a relational database)
-
-#### Future Development
-
-- [ ] Stripe (Donate Page)
-- [ ] Chat
-- [ ] Search
-
-See the [open issues](https://github.com/404pandas/PARSR/issues) for a full list of proposed features (and known issues).
-
-<!-- CONTRIBUTING -->
+---
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a pull request
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
-3. Commit your Changes (git commit -m 'Add some AmazingFeature')
-4. Push to the Branch (git push origin feature/AmazingFeature)
-5. Open a Pull Request
-
-<!-- LICENSE -->
+---
 
 ## License
 
-This project is licensed under the MIT license.
+This project is licensed under the MIT License. See `LICENSE.txt` for details.
 
-See LICENSE.txt for more information.
-
-<!-- CONTACT -->
+---
 
 ## Contact
 
-[Mary Elenius](https://maryelenius.com/d20) - mary.panda.jackson@gmail.com
+[Mary Elenius](https://maryelenius.com/d20) — mary.panda.jackson@gmail.com
 
-in association with:
+[GitHub Repository](https://github.com/404pandas/project-3-setup-guide)
 
-[All Animal Rehabilitation and Release](https://www.allanimalrr.org)
-
-Project Links:
-
-[Figma Board- link later]()
-
-[Github Repository](https://github.com/404pandas/PARSR)
-
-[Deployment- link later]()
-
-<!-- ACKNOWLEDGMENTS -->
+---
 
 ## Acknowledgments
 
-I would like to give a big shoutout to my partner in crime and daughter, Yennefer! Every day she proves she is small yet mighty!
+Big shoutout to my daughter Yennefer — small yet mighty, and the reason half the Witcher character names in the seed data hit different.
+
+And to every bootcamp student who used the Project 3 Setup Guide: this one's for you.
