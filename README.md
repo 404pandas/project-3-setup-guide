@@ -1,10 +1,10 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Contributors](https://img.shields.io/github/contributors/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/network/members)
-[![Stargazers](https://img.shields.io/github/stars/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/stargazers)
-[![Issues](https://img.shields.io/github/issues/404pandas/project-3-setup-guide.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/project-3-setup-guide/issues)
+[![Contributors](https://img.shields.io/github/contributors/404pandas/novigradunderground.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/novigradunderground/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/404pandas/novigradunderground.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/novigradunderground/network/members)
+[![Stargazers](https://img.shields.io/github/stars/404pandas/novigradunderground.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/novigradunderground/stargazers)
+[![Issues](https://img.shields.io/github/issues/404pandas/novigradunderground.svg?style=plastic&logo=appveyor)](https://github.com/404pandas/novigradunderground/issues)
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-black.svg?style=plastic&logo=linkedin&colorB=555)](https://linkedin.com/in/404pandas)
 
 </div>
@@ -17,11 +17,11 @@
   <p>
     <a href="https://novigradunderground.onrender.com/"><strong>View Live App »</strong></a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/404pandas/project-3-setup-guide"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/404pandas/novigradunderground"><strong>Explore the docs »</strong></a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/404pandas/project-3-setup-guide/issues">Report Bug</a>
+    <a href="https://github.com/404pandas/novigradunderground/issues">Report Bug</a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/404pandas/project-3-setup-guide/issues">Request Feature</a>
+    <a href="https://github.com/404pandas/novigradunderground/issues">Request Feature</a>
   </p>
 
 </div>
@@ -75,7 +75,7 @@ Users can post listings and wanted ads, leave inquiries on items, vouch or burn 
 1. Clone the repo
 
 ```sh
-git clone https://github.com/404pandas/project-3-setup-guide.git
+git clone https://github.com/404pandas/novigradunderground.git
 ```
 
 2. Install all dependencies
@@ -146,7 +146,7 @@ Deployed on [Render](https://render.com) with MongoDB Atlas.
 - [ ] Direct messaging between users
 - [ ] Notification system
 
-See [open issues](https://github.com/404pandas/project-3-setup-guide/issues) for proposed features and known bugs.
+See [open issues](https://github.com/404pandas/novigradunderground/issues) for proposed features and known bugs.
 
 ---
 
@@ -170,7 +170,7 @@ This project is licensed under the MIT License. See `LICENSE.txt` for details.
 
 [Mary Elenius](https://maryelenius.com/d20) — mary.panda.jackson@gmail.com
 
-[GitHub Repository](https://github.com/404pandas/project-3-setup-guide)
+[GitHub Repository](https://github.com/404pandas/novigradunderground)
 
 [Live App](https://novigradunderground.onrender.com/)
 
