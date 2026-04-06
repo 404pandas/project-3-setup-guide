@@ -3,14 +3,17 @@ import ListingBoard from "../components/MonsterList";
 import ListingForm from "../components/MonsterForm";
 import { QUERY_LISTINGS } from "../utils/queries";
 import Auth from "../utils/auth";
+import usePageEntrance from "../utils/usePageEntrance";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_LISTINGS, { variables: {} });
   const listings = data?.listings || [];
 
+  const headerRef = usePageEntrance([]);
+
   return (
     <main>
-      <div className="market-header">
+      <div ref={headerRef} className="market-header">
         <h2 className="market-title">The Market Board</h2>
         <p className="market-subtitle">Current listings from across the Continent.</p>
         <div className="market-divider">— ✦ —</div>

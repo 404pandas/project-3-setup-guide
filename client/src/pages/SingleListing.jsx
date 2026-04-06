@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "../utils/gsap";
 import InquiryList from "../components/CommentList";
 import InquiryForm from "../components/CommentForm";
 import UpdateListingForm from "../components/updateMonsterForm";
@@ -34,8 +35,21 @@ const SingleListing = () => {
   const listing = data?.listing || {};
   const [showEditModal, setShowEditModal] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const entryRef = useRef(null);
 
   const [removeListing] = useMutation(REMOVE_LISTING);
+
+  useEffect(() => {
+    if (!listing._id || !entryRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        entryRef.current,
+        { opacity: 0, y: 32 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", clearProps: "transform" }
+      );
+    }, entryRef);
+    return () => ctx.revert();
+  }, [listing._id]);
 
   const handleDelete = async () => {
     try {
@@ -60,7 +74,7 @@ const SingleListing = () => {
 
   return (
     <>
-      <div className="listing-entry">
+      <div ref={entryRef} className="listing-entry">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1rem" }}>
           <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
             <span

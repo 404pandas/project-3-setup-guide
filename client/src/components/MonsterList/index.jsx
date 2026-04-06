@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { gsap, ScrollTrigger } from "../../utils/gsap";
 
 const CATEGORY_STYLES = {
   "Weaponry":       { background: "var(--cat-weaponry-bg)",    color: "var(--cat-weaponry-text)",    border: "#2a3050" },
@@ -18,7 +20,39 @@ const RISK_STYLES = {
 };
 
 const ListingBoard = ({ listings }) => {
-  const navigate = useNavigate();
+  const navigate   = useNavigate();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!listings.length || !containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".listing-card", containerRef.current);
+
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [listings]);
 
   if (!listings.length) {
     return (
@@ -30,7 +64,7 @@ const ListingBoard = ({ listings }) => {
   }
 
   return (
-    <div>
+    <div ref={containerRef}>
       {listings.map((listing) => {
         const cat  = CATEGORY_STYLES[listing.category] || CATEGORY_STYLES["Curiosities"];
         const risk = RISK_STYLES[listing.riskLevel]    || RISK_STYLES["Medium"];

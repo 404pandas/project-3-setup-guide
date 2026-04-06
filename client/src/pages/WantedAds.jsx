@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
+import { gsap, ScrollTrigger } from "../utils/gsap";
+import usePageEntrance from "../utils/usePageEntrance";
 import { QUERY_WANTED_ADS } from "../utils/queries";
 import { ADD_WANTED_AD, REMOVE_WANTED_AD, UPDATE_WANTED_AD } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -182,9 +184,41 @@ const WantedAds = () => {
   const { loading, data } = useQuery(QUERY_WANTED_ADS, { variables: {} });
   const ads = data?.wantedAds || [];
 
+  const headerRef  = usePageEntrance([]);
+  const listRef    = useRef(null);
+
+  useEffect(() => {
+    if (!ads.length || !listRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".wanted-ad-card", listRef.current);
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            clearProps: "transform",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
+      ScrollTrigger.refresh();
+    }, listRef);
+
+    return () => ctx.revert();
+  }, [ads]);
+
   return (
     <main>
-      <div className="market-header">
+      <div ref={headerRef} className="market-header">
         <h2 className="market-title">Wanted Board</h2>
         <p className="market-subtitle">What the Underground is looking to acquire.</p>
         <div className="market-divider">— ✦ —</div>
@@ -209,7 +243,7 @@ const WantedAds = () => {
           <p className="empty-board-text">Nobody needs anything. Unlikely, but here we are.</p>
         </div>
       ) : (
-        <div>{ads.map((ad) => <WantedAdCard key={ad._id} ad={ad} />)}</div>
+        <div ref={listRef}>{ads.map((ad) => <WantedAdCard key={ad._id} ad={ad} />)}</div>
       )}
     </main>
   );
