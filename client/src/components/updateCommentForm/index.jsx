@@ -1,40 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_COMMENT } from "../../utils/mutations";
-import { QUERY_MONSTERS } from "../../utils/queries";
+import { UPDATE_INQUIRY } from "../../utils/mutations";
+import { QUERY_SINGLE_LISTING } from "../../utils/queries";
 
-const UpdateCommentForm = ({
-  monsterId,
-  commentId,
-  initialCommentText,
-  handleCloseModal,
-}) => {
-  const [commentText, setCommentText] = useState(initialCommentText);
+const UpdateInquiryForm = ({ listingId, inquiryId, initialText, handleCloseModal }) => {
+  const [inquiryText, setInquiryText] = useState(initialText || "");
 
-  const [updateComment, { error }] = useMutation(UPDATE_COMMENT, {
-    refetchQueries: [{ query: QUERY_MONSTERS }],
+  const [updateInquiry, { error }] = useMutation(UPDATE_INQUIRY, {
+    refetchQueries: [{ query: QUERY_SINGLE_LISTING, variables: { listingId } }],
   });
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await updateComment({ variables: { monsterId, commentId, commentText } });
-      await handleCloseModal();
+      await updateInquiry({ variables: { listingId, inquiryId, inquiryText } });
+      handleCloseModal();
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleSubmit}>
       <textarea
-        value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
+        value={inquiryText}
+        onChange={(e) => setInquiryText(e.target.value)}
+        style={{ minHeight: "110px" }}
+        placeholder="Revise your inquiry..."
       />
-      <button type='submit'>Update Comment</button>
-      {error && <div>Error: {error.message}</div>}
+      {error && <div className="bg-danger text-white p-3 my-2">{error.message}</div>}
+      <button className="btn btn-primary btn-block" type="submit" style={{ marginTop: "0.75rem" }}>
+        Update
+      </button>
     </form>
   );
 };
 
-export default UpdateCommentForm;
+export default UpdateInquiryForm;

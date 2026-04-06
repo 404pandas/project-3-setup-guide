@@ -1,40 +1,79 @@
 import { Link } from "react-router-dom";
 
-const MonsterList = ({ monsters }) => {
-  if (!monsters.length) {
-    return <h3>No Monsters Yet</h3>;
+const CATEGORY_STYLES = {
+  "Weaponry":       { background: "var(--cat-weaponry-bg)",    color: "var(--cat-weaponry-text)",    border: "#2a3050" },
+  "Arcana":         { background: "var(--cat-arcana-bg)",      color: "var(--cat-arcana-text)",      border: "#3a1870" },
+  "Ingredients":    { background: "var(--cat-ingredients-bg)", color: "var(--cat-ingredients-text)", border: "#284018" },
+  "Monster Parts":  { background: "var(--cat-parts-bg)",       color: "var(--cat-parts-text)",       border: "#401010" },
+  "Forbidden Texts":{ background: "var(--cat-texts-bg)",       color: "var(--cat-texts-text)",       border: "#300a48" },
+  "Contraband":     { background: "var(--cat-contraband-bg)",  color: "var(--cat-contraband-text)",  border: "#501008" },
+  "Curiosities":    { background: "var(--cat-curiosities-bg)", color: "var(--cat-curiosities-text)", border: "#483010" },
+};
+
+const RISK_STYLES = {
+  "Low":       { bg: "var(--risk-low-bg)",   border: "var(--risk-low-border)",   color: "var(--risk-low-text)",   symbol: "●" },
+  "Medium":    { bg: "var(--risk-med-bg)",   border: "var(--risk-med-border)",   color: "var(--risk-med-text)",   symbol: "◆" },
+  "High":      { bg: "var(--risk-high-bg)",  border: "var(--risk-high-border)",  color: "var(--risk-high-text)",  symbol: "▲" },
+  "Forbidden": { bg: "var(--risk-forb-bg)",  border: "var(--risk-forb-border)",  color: "var(--risk-forb-text)",  symbol: "✖" },
+};
+
+const ListingBoard = ({ listings }) => {
+  if (!listings.length) {
+    return (
+      <div className="empty-board">
+        <p className="empty-board-text">The board is empty. Nothing to buy, nothing to sell.</p>
+        <p className="empty-board-sub">Be the first to post a listing.</p>
+      </div>
+    );
   }
-  console.log(monsters);
+
   return (
     <div>
-      {monsters &&
-        monsters.map((monster) => (
-          <div key={monster._id} className='card mb-3'>
-            <h4 className='card-header bg-dark text-light p-2 m-0'>
-              {monster.monsterName}
-            </h4>
-            <div className='card-body bg-light p-2'>
-              <h5>Type:</h5>
-              <p>{monster.type}</p>
-              <h5>Habitat:</h5>
-              <p>{monster.habitat}</p>
-              <h5>Weaknesses:</h5>
-              <ul>
-                {monster.weaknesses.map((weakness, i) => (
-                  <li key={weakness[i]}>{weakness}</li>
-                ))}
-              </ul>
+      {listings.map((listing) => {
+        const cat  = CATEGORY_STYLES[listing.category] || CATEGORY_STYLES["Curiosities"];
+        const risk = RISK_STYLES[listing.riskLevel]    || RISK_STYLES["Medium"];
+        const statusClass = `status-stamp status-${listing.status?.toLowerCase()}`;
+
+        return (
+          <div key={listing._id} className="listing-card">
+            <div className="listing-card-top">
+              <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", flexWrap: "wrap" }}>
+                <span
+                  className="category-badge"
+                  style={{ background: cat.background, color: cat.color, borderColor: cat.border }}
+                >
+                  {listing.category}
+                </span>
+                <span
+                  className="risk-badge"
+                  style={{ background: risk.bg, borderColor: risk.border, color: risk.color }}
+                >
+                  {risk.symbol} {listing.riskLevel}
+                </span>
+              </div>
+              <span className={statusClass}>{listing.status}</span>
             </div>
-            <Link
-              className='btn btn-primary btn-block btn-squared'
-              to={`/monsters/${monster._id}`}
-            >
-              Join the discussion on this monster.
-            </Link>
+
+            <div className="listing-card-body">
+              <h4 className="listing-name">{listing.itemName}</h4>
+              <p className="listing-price">{listing.price}</p>
+              <p className="listing-region">📍 {listing.region}</p>
+              <p className="listing-description">{listing.description}</p>
+            </div>
+
+            <div className="listing-card-footer">
+              <Link
+                className="btn btn-crimson btn-block"
+                to={`/listings/${listing._id}`}
+              >
+                Inquire About This Item →
+              </Link>
+            </div>
           </div>
-        ))}
+        );
+      })}
     </div>
   );
 };
 
-export default MonsterList;
+export default ListingBoard;

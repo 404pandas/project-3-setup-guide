@@ -1,141 +1,124 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { ADD_LISTING } from "../../utils/mutations";
+import { QUERY_LISTINGS } from "../../utils/queries";
 
-import { ADD_MONSTER } from "../../utils/mutations";
-import { QUERY_MONSTERS } from "../../utils/queries";
+const CATEGORIES = [
+  "Weaponry", "Arcana", "Ingredients", "Monster Parts",
+  "Forbidden Texts", "Contraband", "Curiosities",
+];
+const RISK_LEVELS = ["Low", "Medium", "High", "Forbidden"];
 
-const MonsterForm = () => {
+const ListingForm = () => {
   const [formState, setFormState] = useState({
-    monsterName: "",
-    type: "",
-    habitat: "",
-    weaknesses: [],
-  });
-  const [weaknessInput, setWeaknessInput] = useState("");
-  const [addMonster, { error }] = useMutation(ADD_MONSTER, {
-    refetchQueries: [QUERY_MONSTERS, "getMonsters"],
+    itemName: "",
+    category: "",
+    price: "",
+    riskLevel: "Medium",
+    region: "",
+    description: "",
   });
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const [addListing, { error }] = useMutation(ADD_LISTING, {
+    refetchQueries: [QUERY_LISTINGS, "getListings"],
+  });
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = await addMonster({
-        variables: { ...formState },
-      });
-      console.log(data);
-      setFormState({
-        monsterName: "",
-        type: "",
-        habitat: "",
-        weaknesses: [],
-      });
-      setWeaknessInput("");
+      await addListing({ variables: { ...formState } });
+      setFormState({ itemName: "", category: "", price: "", riskLevel: "Medium", region: "", description: "" });
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
-  };
-  const handleWeaknessChange = (event) => {
-    setWeaknessInput(event.target.value);
-  };
-  const handleAddWeakness = () => {
-    if (weaknessInput.trim() !== "") {
-      setFormState({
-        ...formState,
-        weaknesses: [...formState.weaknesses, weaknessInput],
-      });
-      setWeaknessInput("");
-    }
-  };
-
-  const handleRemoveWeakness = (index) => {
-    const updatedWeaknesses = formState.weaknesses.filter(
-      (_, idx) => idx !== index
-    );
-    setFormState({ ...formState, weaknesses: updatedWeaknesses });
   };
 
   return (
-    <div>
-      <h3>Add Monster?</h3>
+    <div className="listing-form-panel">
+      <p className="listing-form-title">Post a New Listing</p>
 
-      <form
-        className='flex-row justify-center justify-space-between-md align-center'
-        onSubmit={handleFormSubmit}
-      >
-        <div className='col-12 col-lg-9'>
-          <textarea
-            name='monsterName'
-            placeholder="Here's a new monster..."
-            value={formState.monsterName}
-            className='form-input w-100'
-            style={{ lineHeight: "1.5", resize: "vertical" }}
-            onChange={handleChange}
-          ></textarea>
-          <textarea
-            name='type'
-            placeholder='What type of monster is it?'
-            value={formState.type}
-            className='form-input w-100'
-            style={{ lineHeight: "1.5", resize: "vertical" }}
-            onChange={handleChange}
-          ></textarea>
-          <textarea
-            name='habitat'
-            placeholder='Where does it live?'
-            value={formState.habitat}
-            className='form-input w-100'
-            style={{ lineHeight: "1.5", resize: "vertical" }}
-            onChange={handleChange}
-          ></textarea>
-          {/* insert an input for an array of strings */}
-          <div>
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex-row" style={{ gap: "1rem" }}>
+          <div className="col-12 col-md-8">
+            <label htmlFor="itemName">Item Name</label>
             <input
-              type='text'
-              placeholder='Enter a weakness'
-              value={weaknessInput}
-              onChange={handleWeaknessChange}
+              id="itemName"
+              name="itemName"
+              type="text"
+              placeholder="What are you selling?"
+              value={formState.itemName}
+              onChange={handleChange}
+              required
             />
-            <button type='button' onClick={handleAddWeakness}>
-              Add Weakness
-            </button>
           </div>
-          <div>
-            <h4>Weaknesses:</h4>
-            <ul>
-              {formState.weaknesses.map((weakness, index) => (
-                <li key={index}>
-                  {weakness}
-                  <button
-                    type='button'
-                    onClick={() => handleRemoveWeakness(index)}
-                  >
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
+          <div className="col-12 col-md-4">
+            <label htmlFor="price">Price</label>
+            <input
+              id="price"
+              name="price"
+              type="text"
+              placeholder="e.g. 500 orens, trade only"
+              value={formState.price}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
 
-        <div className='col-12 col-lg-3'>
-          <button className='btn btn-primary btn-block py-3' type='submit'>
-            Add Monster
-          </button>
-        </div>
-        {error && (
-          <div className='col-12 my-3 bg-danger text-white p-3'>
-            {error.message}
+        <div className="flex-row" style={{ gap: "1rem" }}>
+          <div className="col-12 col-md-4">
+            <label htmlFor="category">Category</label>
+            <select id="category" name="category" value={formState.category} onChange={handleChange} required>
+              <option value="">— Select —</option>
+              {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
           </div>
+          <div className="col-12 col-md-4">
+            <label htmlFor="riskLevel">Risk Level</label>
+            <select id="riskLevel" name="riskLevel" value={formState.riskLevel} onChange={handleChange}>
+              {RISK_LEVELS.map((r) => <option key={r} value={r}>{r}</option>)}
+            </select>
+          </div>
+          <div className="col-12 col-md-4">
+            <label htmlFor="region">Region / Location</label>
+            <input
+              id="region"
+              name="region"
+              type="text"
+              placeholder="e.g. Novigrad, Skellige"
+              value={formState.region}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Describe the item. Be as vague or detailed as you prefer."
+          value={formState.description}
+          style={{ minHeight: "100px" }}
+          onChange={handleChange}
+          required
+        />
+
+        <button className="btn btn-primary btn-block py-3" type="submit" style={{ marginTop: "0.5rem" }}>
+          Post to the Board
+        </button>
+
+        {error && (
+          <div className="bg-danger text-white p-3 my-3">{error.message}</div>
         )}
       </form>
     </div>
   );
 };
 
-export default MonsterForm;
+export default ListingForm;

@@ -1,97 +1,92 @@
 import { useState } from "react";
-import UpdateCommentForm from "../updateCommentForm";
+import UpdateInquiryForm from "../updateCommentForm";
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
-import { REMOVE_COMMENT } from "../../utils/mutations";
+import { REMOVE_INQUIRY } from "../../utils/mutations";
 
-const CommentList = ({ comments = [], monsterId }) => {
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [selectedComment, setSelectedComment] = useState(null);
+const InquiryList = ({ inquiries = [], listingId }) => {
+  const [showModal, setShowModal]           = useState(false);
+  const [selectedInquiry, setSelectedInquiry] = useState(null);
 
-  const handleUpdateComment = (commentId) => {
-    // Set the selected comment id and show the modal
-    setSelectedComment(commentId);
-    setShowUpdateModal(true);
+  const [removeInquiry] = useMutation(REMOVE_INQUIRY);
+
+  const handleEdit = (inquiryId) => {
+    setSelectedInquiry(inquiryId);
+    setShowModal(true);
   };
 
-  const [removeComment] = useMutation(REMOVE_COMMENT);
-  const handleDeleteComment = async (commentId) => {
+  const handleDelete = async (inquiryId) => {
     try {
-      await removeComment({
-        variables: { monsterId, commentId },
-      });
-      // Optionally, you can update the comment list after deletion
-    } catch (error) {
-      console.error("Error deleting comment:", error);
+      await removeInquiry({ variables: { listingId, inquiryId } });
+    } catch (err) {
+      console.error(err);
     }
   };
-  const handleCloseModal = () => {
-    // Reset selected comment and hide the modal
-    setSelectedComment(null);
-    setShowUpdateModal(false);
-  };
 
-  if (!comments.length) {
-    return <h3>No Comments Yet</h3>;
-  }
+  const handleCloseModal = () => {
+    setSelectedInquiry(null);
+    setShowModal(false);
+  };
 
   return (
     <>
-      <h3
-        className='p-5 display-inline-block'
-        style={{ borderBottom: "1px dotted #1a1a1a" }}
-      >
-        Comments
-      </h3>
-      <div className='flex-row my-4'>
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment._id} className='col-12 mb-3 pb-3'>
-              <div className='p-3 bg-dark text-light'>
-                <h5 className='card-header'>
-                  {comment.commentAuthor} commented{" "}
-                  <span style={{ fontSize: "0.825rem" }}>
-                    on {comment.createdAt}
-                  </span>
-                </h5>
-                <p className='card-body'>{comment.commentText}</p>
-                {Auth.loggedIn() &&
-                  Auth.getProfile().data.username === comment.commentAuthor && (
-                    <div>
-                      <button onClick={() => handleUpdateComment(comment._id)}>
-                        Edit
-                      </button>
-                      <button onClick={() => handleDeleteComment(comment._id)}>
-                        Delete
-                      </button>
-                    </div>
-                  )}
-              </div>
+      <div className="inquiries-header">Inquiries</div>
+
+      {!inquiries.length ? (
+        <div className="no-inquiries">
+          No inquiries yet. Be the first to make contact.
+        </div>
+      ) : (
+        <div>
+          {inquiries.map((inquiry) => (
+            <div key={inquiry._id} className="inquiry-card">
+              <div className="inquiry-author">{inquiry.inquiryAuthor}</div>
+              <div className="inquiry-timestamp">sent {inquiry.createdAt}</div>
+              <p className="inquiry-text">{inquiry.inquiryText}</p>
+              {Auth.loggedIn() &&
+                Auth.getProfile().data.username === inquiry.inquiryAuthor && (
+                  <div className="inquiry-actions">
+                    <button className="btn btn-secondary btn-sm" onClick={() => handleEdit(inquiry._id)}>
+                      Edit
+                    </button>
+                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(inquiry._id)}>
+                      Retract
+                    </button>
+                  </div>
+                )}
             </div>
           ))}
-        {showUpdateModal && (
-          <div className='modal'>
-            <div className='modal-content'>
-              {/* Pass comment id and initial comment text to UpdateCommentForm */}
-              <UpdateCommentForm
-                monsterId={monsterId}
-                commentId={selectedComment}
-                handleCloseModal={handleCloseModal}
-                initialCommentText={
-                  comments.find((comment) => comment._id === selectedComment)
-                    ?.commentText
-                }
-                onUpdate={() => {
-                  handleCloseModal(); // Close modal after updating
-                }}
-              />
-              <button onClick={handleCloseModal}>Close</button>
+        </div>
+      )}
+
+      {showModal && (
+        <>
+          <div className="modal-backdrop show" onClick={handleCloseModal} />
+          <div className="modal show" role="dialog" aria-modal="true">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Edit Inquiry</h5>
+                  <button className="btn-close" onClick={handleCloseModal} aria-label="Close" />
+                </div>
+                <div className="modal-body">
+                  <UpdateInquiryForm
+                    listingId={listingId}
+                    inquiryId={selectedInquiry}
+                    handleCloseModal={handleCloseModal}
+                    initialText={inquiries.find((i) => i._id === selectedInquiry)?.inquiryText}
+                  />
+                </div>
+                <div className="modal-footer">
+                  <button className="btn btn-secondary btn-sm" onClick={handleCloseModal}>Cancel</button>
+                </div>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 };
 
-export default CommentList;
+export default InquiryList;

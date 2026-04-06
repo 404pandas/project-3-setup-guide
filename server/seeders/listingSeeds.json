@@ -1,0 +1,102 @@
+[
+  {
+    "itemName": "Silver Sword — 'The Harvester'",
+    "category": "Weaponry",
+    "price": "2,000 orens",
+    "riskLevel": "High",
+    "region": "Velen",
+    "status": "Available",
+    "createdBy": "Geralt of Rivia",
+    "description": "Confirmed kill count of at least forty contracts. Runes etched along the fuller — Chernobog, Devana, Stribog. Exceptional balance. Previous owner died of unrelated causes. Or so I'm told. No paperwork, obviously. Serious inquiries only — I don't respond to lowballers."
+  },
+  {
+    "itemName": "Deathstalker Scorpion Venom — 3 Vials",
+    "category": "Ingredients",
+    "price": "400 orens per vial",
+    "riskLevel": "High",
+    "region": "Ofir",
+    "status": "Available",
+    "createdBy": "Regis",
+    "description": "Genuine Ofiri import. Extremely rare this side of the Great Sea. Alchemical applications are numerous if you know what you're doing. Do not get any on your skin. Do not ask what I had to do to acquire these. Pick-up only — I am not mailing venom across the Continent."
+  },
+  {
+    "itemName": "Diagram: Forgotten Wolven Armor Set (Full)",
+    "category": "Forbidden Texts",
+    "price": "4,000 orens (firm)",
+    "riskLevel": "Forbidden",
+    "region": "Unknown",
+    "status": "Available",
+    "createdBy": "Vesemir",
+    "description": "Recovered from the ruins of a collapsed School of the Wolf outpost in the Blue Mountains. Complete set — chest, gauntlets, trousers, boots. Authenticity vouched for by someone who would know. Provenance is not a topic for discussion. If you're asking, you can't afford it. If you can afford it, you already know not to ask."
+  },
+  {
+    "itemName": "Ancient Elven Amulet — Partial Enchantment",
+    "category": "Arcana",
+    "price": "1,200 orens",
+    "riskLevel": "Medium",
+    "region": "Mahakam",
+    "status": "Available",
+    "createdBy": "Yennefer of Vengerberg",
+    "description": "Pre-Conjunction artifact, dwarven provenance. The enchantment is mostly stable. The glow fades after a few hours if you don't feed it — I won't explain what feeding it means, you can figure that out. One of only three I've ever seen in twenty years of trading. Not responsible for any metaphysical side effects."
+  },
+  {
+    "itemName": "Chort Trophy — Mounted, Horns Intact",
+    "category": "Monster Parts",
+    "price": "280 orens",
+    "riskLevel": "Low",
+    "region": "White Orchard",
+    "status": "Available",
+    "createdBy": "Zoltan Chivay",
+    "description": "Excellent condition considering the circumstances of its removal. Wall-mounted display bracket included. The smell fades almost entirely after about a week. Makes an impressive statement piece for an alchemist's lab or a particularly confident merchant's office. Picked it up off a witcher who needed quick coin. His loss."
+  },
+  {
+    "itemName": "Church of the Eternal Fire — Internal Correspondence Bundle",
+    "category": "Forbidden Texts",
+    "price": "800 orens",
+    "riskLevel": "Forbidden",
+    "region": "Novigrad",
+    "status": "Available",
+    "createdBy": "Dandelion",
+    "description": "Fascinating reading if you're the sort of person who isn't immediately bothered by being hunted by inquisitors. Forty-seven letters, three internal directives, and one document you will find very interesting. I'm not going to tell you what's in it — that would ruin it. I am going to tell you that several prominent figures in Novigrad would pay considerably more than 800 orens to ensure this bundle simply disappeared."
+  },
+  {
+    "itemName": "Stammelford's Dust — Significant Quantity",
+    "category": "Contraband",
+    "price": "650 orens per ounce",
+    "riskLevel": "High",
+    "region": "Oxenfurt",
+    "status": "Available",
+    "createdBy": "Triss Merigold",
+    "description": "Oxenfurt Academy provenance. The professor will not be needing it. I won't elaborate. Genuine Stammelford's, not the diluted street stuff — tested it myself. The magical amplification properties are documented. Possession is illegal in Redania, Temeria, and technically also Kovir. What you do with it is entirely your own business."
+  },
+  {
+    "itemName": "Temerian Military Crossbow — Lily-Stamped",
+    "category": "Weaponry",
+    "price": "450 orens",
+    "riskLevel": "Medium",
+    "region": "Vizima",
+    "status": "Reserved",
+    "createdBy": "Emhyr var Emreis",
+    "description": "Decommissioned from active service through channels I won't specify. Factory-stamped Temerian lily on the stock. Mechanically excellent — the military maintains its equipment properly, I'll give them that. Paperwork not included and never will be."
+  },
+  {
+    "itemName": "Succubus Pheromone Extract — 10ml",
+    "category": "Ingredients",
+    "price": "1,800 orens",
+    "riskLevel": "High",
+    "region": "Toussaint",
+    "status": "Available",
+    "createdBy": "Regis",
+    "description": "Acquired ethically. I want to be clear about that — the succubus is fine, she actually gets something out of the arrangement too. Handle with three layers of gloves. Do not smell the container directly, regardless of how compelling the urge becomes. Alchemical applications are substantial if you know what you're creating."
+  },
+  {
+    "itemName": "Tome: On the Nature of Chaos and its Practitioners",
+    "category": "Forbidden Texts",
+    "price": "2,500 orens",
+    "riskLevel": "Forbidden",
+    "region": "Aretuza",
+    "status": "Available",
+    "createdBy": "Yennefer of Vengerberg",
+    "description": "Property of Aretuza Academy. Classified. The theoretical legal penalty for possession is 'death by incineration' but enforcement has been inconsistent in recent decades. Written in Elder Speech with extensive marginal annotations in what appears to be blood — not metaphorically. The annotations are worth more than the original text."
+  }
+]

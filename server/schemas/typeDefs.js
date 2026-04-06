@@ -6,19 +6,23 @@ const typeDefs = `
     password: String
   }
 
-  type Monster {
+  type Listing {
     _id: ID
-    monsterName: String!
-    type: String!
-    habitat: String!
-    weaknesses: [String]!
-    comments: [Comment]
+    itemName: String!
+    category: String!
+    price: String!
+    riskLevel: String!
+    region: String!
+    status: String!
+    description: String!
+    createdBy: String!
+    inquiries: [Inquiry]
   }
 
-  type Comment {
+  type Inquiry {
     _id: ID
-    commentText: String
-    commentAuthor: String
+    inquiryText: String
+    inquiryAuthor: String
     createdAt: String
   }
 
@@ -30,20 +34,36 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
-    monsters(username: String): [Monster]
-    monster(monsterId: ID!): Monster
+    listings(username: String): [Listing]
+    listing(listingId: ID!): Listing
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addMonster(monsterName: String!, type: String!, habitat: String!, weaknesses: [String]!): Monster
-    updateMonster(monsterId: ID!, monsterName: String, type: String, habitat: String, weaknesses: [String]): Monster
-      removeMonster(monsterId: ID!): Monster
-    addComment(monsterId: ID!, commentText: String!): Monster
-    updateComment(monsterId: ID!, commentId: ID!, commentText: String!): Monster
-    removeComment(monsterId: ID!, commentId: ID!): Monster
+    addListing(
+      itemName: String!
+      category: String!
+      price: String!
+      riskLevel: String!
+      region: String!
+      description: String!
+    ): Listing
+    updateListing(
+      listingId: ID!
+      itemName: String
+      category: String
+      price: String
+      riskLevel: String
+      region: String
+      description: String
+      status: String
+    ): Listing
+    removeListing(listingId: ID!): Listing
+    addInquiry(listingId: ID!, inquiryText: String!): Listing
+    updateInquiry(listingId: ID!, inquiryId: ID!, inquiryText: String!): Listing
+    removeInquiry(listingId: ID!, inquiryId: ID!): Listing
   }
 `;
 

@@ -1,23 +1,24 @@
-const { User, Monster } = require("../models");
+const { User, Listing } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("monsters");
+      return User.find();
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("monsters");
+      return User.findOne({ username });
     },
-    monsters: async () => {
-      return Monster.find().sort({ name: 1 });
+    listings: async (parent, { username } = {}) => {
+      const filter = username ? { createdBy: username } : {};
+      return Listing.find(filter).sort({ itemName: 1 });
     },
-    monster: async (parent, { monsterId }) => {
-      return Monster.findOne({ _id: monsterId });
+    listing: async (parent, { listingId }) => {
+      return Listing.findOne({ _id: listingId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("comments");
+        return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
     },
@@ -31,64 +32,70 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError;
-      }
+      if (!user) throw AuthenticationError;
 
       const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw AuthenticationError;
-      }
+      if (!correctPw) throw AuthenticationError;
 
       const token = signToken(user);
-
       return { token, user };
     },
-    addMonster: async (parent, { monsterName, type, habitat, weaknesses }) => {
-      const monster = await Monster.create({
-        monsterName,
-        type,
-        habitat,
-        weaknesses,
+    addListing: async (
+      parent,
+      { itemName, category, price, riskLevel, region, description },
+      context
+    ) => {
+      if (!context.user) throw AuthenticationError;
+      return Listing.create({
+        itemName, category, price, riskLevel, region, description,
+        createdBy: context.user.username,
       });
-
-      return monster;
     },
-    addComment: async (parent, { monsterId, commentText }, context) => {
+    updateListing: async (
+      parent,
+      { listingId, itemName, category, price, riskLevel, region, description, status }
+    ) => {
+      const updateFields = {};
+      if (itemName) updateFields.itemName = itemName;
+      if (category) updateFields.category = category;
+      if (price) updateFields.price = price;
+      if (riskLevel) updateFields.riskLevel = riskLevel;
+      if (region) updateFields.region = region;
+      if (description) updateFields.description = description;
+      if (status) updateFields.status = status;
+
+      return Listing.findOneAndUpdate(
+        { _id: listingId },
+        { $set: updateFields },
+        { new: true }
+      );
+    },
+    removeListing: async (parent, { listingId }) => {
+      return Listing.findOneAndDelete({ _id: listingId });
+    },
+    addInquiry: async (parent, { listingId, inquiryText }, context) => {
       if (context.user) {
-        return Monster.findOneAndUpdate(
-          { _id: monsterId },
+        return Listing.findOneAndUpdate(
+          { _id: listingId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              inquiries: { inquiryText, inquiryAuthor: context.user.username },
             },
           },
-          {
-            new: true,
-            runValidators: true,
-          }
+          { new: true, runValidators: true }
         );
       }
       throw AuthenticationError;
     },
-    removeMonster: async (parent, { monsterId }, context) => {
-      const monster = await Monster.findOneAndDelete({
-        _id: monsterId,
-      });
-
-      return monster;
-    },
-    removeComment: async (parent, { monsterId, commentId }, context) => {
+    removeInquiry: async (parent, { listingId, inquiryId }, context) => {
       if (context.user) {
-        return Monster.findOneAndUpdate(
-          { _id: monsterId },
+        return Listing.findOneAndUpdate(
+          { _id: listingId },
           {
             $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
+              inquiries: {
+                _id: inquiryId,
+                inquiryAuthor: context.user.username,
               },
             },
           },
@@ -97,26 +104,10 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updateComment: async (parent, { monsterId, commentId, commentText }) => {
-      return Monster.findOneAndUpdate(
-        { _id: monsterId, "comments._id": commentId },
-        { $set: { "comments.$.commentText": commentText } },
-        { new: true }
-      );
-    },
-    updateMonster: async (
-      parent,
-      { monsterId, monsterName, type, habitat, weaknesses }
-    ) => {
-      const updateFields = {};
-      if (monsterName) updateFields.monsterName = monsterName;
-      if (type) updateFields.type = type;
-      if (habitat) updateFields.habitat = habitat;
-      if (weaknesses) updateFields.weaknesses = weaknesses;
-
-      return Monster.findOneAndUpdate(
-        { _id: monsterId },
-        { $set: updateFields },
+    updateInquiry: async (parent, { listingId, inquiryId, inquiryText }) => {
+      return Listing.findOneAndUpdate(
+        { _id: listingId, "inquiries._id": inquiryId },
+        { $set: { "inquiries.$.inquiryText": inquiryText } },
         { new: true }
       );
     },

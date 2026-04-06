@@ -10,36 +10,42 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_MONSTERS = gql`
-  query getMonsters {
-    monsters {
+export const QUERY_LISTINGS = gql`
+  query getListings {
+    listings {
       _id
-      monsterName
-      type
-      habitat
-      weaknesses
-      comments {
+      itemName
+      category
+      price
+      riskLevel
+      region
+      status
+      description
+      inquiries {
         _id
-        commentText
-        commentAuthor
+        inquiryText
+        inquiryAuthor
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_SINGLE_MONSTER = gql`
-  query getSingleMonster($monsterId: ID!) {
-    monster(monsterId: $monsterId) {
+export const QUERY_SINGLE_LISTING = gql`
+  query getSingleListing($listingId: ID!) {
+    listing(listingId: $listingId) {
       _id
-      monsterName
-      type
-      habitat
-      weaknesses
-      comments {
+      itemName
+      category
+      price
+      riskLevel
+      region
+      status
+      description
+      inquiries {
         _id
-        commentText
-        commentAuthor
+        inquiryText
+        inquiryAuthor
         createdAt
       }
     }

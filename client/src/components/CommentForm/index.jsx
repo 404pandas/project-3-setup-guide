@@ -1,88 +1,76 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
-import { ADD_COMMENT } from "../../utils/mutations";
-
+import { ADD_INQUIRY } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-const CommentForm = ({ monsterId }) => {
-  const [commentText, setCommentText] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
+const InquiryForm = ({ listingId }) => {
+  const [inquiryText, setInquiryText] = useState("");
+  const [charCount, setCharCount]     = useState(0);
+  const MAX = 500;
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addInquiry, { error }] = useMutation(ADD_INQUIRY);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const { data } = await addComment({
-        variables: {
-          monsterId,
-          commentText,
-          commentAuthor: Auth.getProfile().data.username,
-        },
-      });
-
-      setCommentText("");
+      await addInquiry({ variables: { listingId, inquiryText } });
+      setInquiryText("");
+      setCharCount(0);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    if (name === "commentText" && value.length <= 280) {
-      setCommentText(value);
-      setCharacterCount(value.length);
+  const handleChange = (e) => {
+    const val = e.target.value;
+    if (val.length <= MAX) {
+      setInquiryText(val);
+      setCharCount(val.length);
     }
   };
 
-  return (
-    <div>
-      <h4>What are your thoughts on this monster?</h4>
-
-      {Auth.loggedIn() ? (
-        <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? "text-danger" : ""
-            }`}
-          >
-            Character Count: {characterCount}/280
-            {error && <span className='ml-2'>{error.message}</span>}
-          </p>
-          <form
-            className='flex-row justify-center justify-space-between-md align-center'
-            onSubmit={handleFormSubmit}
-          >
-            <div className='col-12 col-lg-9'>
-              <textarea
-                name='commentText'
-                placeholder='Add your comment...'
-                value={commentText}
-                className='form-input w-100'
-                style={{ lineHeight: "1.5", resize: "vertical" }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-
-            <div className='col-12 col-lg-3'>
-              <button className='btn btn-primary btn-block py-3' type='submit'>
-                Add Comment
-              </button>
-            </div>
-          </form>
-        </>
-      ) : (
-        <p>
-          You need to be logged in to share your monsters. Please{" "}
-          <Link to='/login'>login</Link> or <Link to='/signup'>signup.</Link>
+  if (!Auth.loggedIn()) {
+    return (
+      <div className="inquiry-form-panel" style={{ textAlign: "center" }}>
+        <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", color: "var(--text-muted)", marginBottom: "1rem" }}>
+          You need to be in the network to make inquiries.
         </p>
-      )}
+        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center" }}>
+          <Link to="/login"  className="btn btn-info">Enter</Link>
+          <Link to="/signup" className="btn btn-crimson">Join the Network</Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="inquiry-form-panel">
+      <p className="inquiry-form-title">Send an Inquiry</p>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          placeholder="Ask about availability, arrange a meeting, negotiate terms..."
+          value={inquiryText}
+          onChange={handleChange}
+          style={{ minHeight: "90px" }}
+        />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.4rem" }}>
+          <span style={{
+            fontFamily: "var(--font-sc)",
+            fontSize: "0.7rem",
+            letterSpacing: "0.06em",
+            color: charCount >= MAX ? "var(--crimson-bright)" : "var(--text-dim)",
+          }}>
+            {charCount}/{MAX}
+            {error && <span style={{ marginLeft: "0.5rem" }}> — {error.message}</span>}
+          </span>
+          <button className="btn btn-crimson btn-sm" type="submit" disabled={!inquiryText.trim()}>
+            Send
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default CommentForm;
+export default InquiryForm;

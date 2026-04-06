@@ -1,11 +1,8 @@
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
-import MonsterForm from "../components/MonsterForm";
-import MonsterList from "../components/MonsterList";
-
-import { QUERY_USER, QUERY_ME, QUERY_MONSTERS } from "../utils/queries";
-
+import ListingForm from "../components/MonsterForm";
+import ListingBoard from "../components/MonsterList";
+import { QUERY_USER, QUERY_ME, QUERY_LISTINGS } from "../utils/queries";
 import Auth from "../utils/auth";
 
 const Profile = () => {
@@ -14,55 +11,59 @@ const Profile = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
-  const { loading: loadingMonsters, data: monsterData } =
-    useQuery(QUERY_MONSTERS);
+  const { loading: loadingListings, data: listingData } = useQuery(QUERY_LISTINGS);
 
-  const user = data?.me || data?.user || {};
-  const monsters = monsterData?.monsters || [];
+  const user     = data?.me || data?.user || {};
+  const listings = listingData?.listings || [];
 
-  // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to='/me' />;
+    return <Navigate to="/me" />;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (loadingMonsters) {
-    return <div>Loading Monsters...</div>;
-  }
-
-  if (!user) {
+  if (loading || loadingListings) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <div className="loading-wrap">
+        <p className="loading-text">Pulling up the stash...</p>
+      </div>
     );
   }
 
-  if (monsters.length === 0) {
-    return <h4>No monsters to display</h4>;
+  if (!user?.username) {
+    return (
+      <div style={{ textAlign: "center", padding: "4rem 1rem" }}>
+        <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", color: "var(--text-muted)" }}>
+          You need to be in the network to view a stash.
+        </p>
+      </div>
+    );
   }
+
+  const displayName = userParam ? user.username : Auth.getProfile().data.username;
 
   return (
     <div>
-      <div className='flex-row justify-center mb-3'>
-        <h2 className='col-12 col-md-10 bg-dark text-light p-3 mb-5'>
-          Viewing {userParam ? `${user.username}'s` : "your"} profile.
-        </h2>
-
-        <div className='col-12 col-md-10 mb-5'>
-          <MonsterList monsters={monsters} title='Witcher Monsters' />
-        </div>
-        <div
-          className='col-12 col-md-10 mb-3 p-3'
-          style={{ border: "1px dotted #1a1a1a" }}
-        >
-          <MonsterForm />
+      <div className="stash-header">
+        <div className="stash-label">Underground Contact</div>
+        <h2 className="stash-name">{displayName}</h2>
+        <div style={{ marginTop: "0.6rem" }}>
+          <span style={{ fontFamily: "var(--font-sc)", fontSize: "0.65rem", letterSpacing: "0.12em", color: "var(--text-dim)" }}>
+            {listings.length} active listing{listings.length !== 1 ? "s" : ""} on the board
+          </span>
         </div>
       </div>
+
+      {listings.length === 0 ? (
+        <div className="empty-board">
+          <p className="empty-board-text">Nothing on the board yet.</p>
+          <p className="empty-board-sub">Post something to get started.</p>
+        </div>
+      ) : (
+        <div className="mb-5">
+          <ListingBoard listings={listings} />
+        </div>
+      )}
+
+      <ListingForm />
     </div>
   );
 };

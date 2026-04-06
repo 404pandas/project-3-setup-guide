@@ -24,101 +24,122 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_MONSTER = gql`
-  mutation addMonster(
-    $monsterName: String!
-    $type: String!
-    $habitat: String!
-    $weaknesses: [String]!
+export const ADD_LISTING = gql`
+  mutation addListing(
+    $itemName: String!
+    $category: String!
+    $price: String!
+    $riskLevel: String!
+    $region: String!
+    $description: String!
   ) {
-    addMonster(
-      monsterName: $monsterName
-      type: $type
-      habitat: $habitat
-      weaknesses: $weaknesses
+    addListing(
+      itemName: $itemName
+      category: $category
+      price: $price
+      riskLevel: $riskLevel
+      region: $region
+      description: $description
     ) {
-      weaknesses
-      habitat
-      type
-      monsterName
+      _id
+      itemName
+      category
+      price
+      riskLevel
+      region
+      status
+      description
+    }
+  }
+`;
+
+export const UPDATE_LISTING = gql`
+  mutation updateListing(
+    $listingId: ID!
+    $itemName: String
+    $category: String
+    $price: String
+    $riskLevel: String
+    $region: String
+    $description: String
+    $status: String
+  ) {
+    updateListing(
+      listingId: $listingId
+      itemName: $itemName
+      category: $category
+      price: $price
+      riskLevel: $riskLevel
+      region: $region
+      description: $description
+      status: $status
+    ) {
+      _id
+      itemName
+      category
+      price
+      riskLevel
+      region
+      status
+      description
+    }
+  }
+`;
+
+export const REMOVE_LISTING = gql`
+  mutation removeListing($listingId: ID!) {
+    removeListing(listingId: $listingId) {
       _id
     }
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($monsterId: ID!, $commentText: String!) {
-    addComment(monsterId: $monsterId, commentText: $commentText) {
+export const ADD_INQUIRY = gql`
+  mutation addInquiry($listingId: ID!, $inquiryText: String!) {
+    addInquiry(listingId: $listingId, inquiryText: $inquiryText) {
       _id
-      comments {
+      inquiries {
         _id
-        commentText
+        inquiryText
+        inquiryAuthor
         createdAt
       }
     }
   }
 `;
 
-export const REMOVE_MONSTER = gql`
-  mutation removeMonster($monsterId: ID!) {
-    removeMonster(monsterId: $monsterId) {
+export const REMOVE_INQUIRY = gql`
+  mutation removeInquiry($listingId: ID!, $inquiryId: ID!) {
+    removeInquiry(listingId: $listingId, inquiryId: $inquiryId) {
       _id
-    }
-  }
-`;
-
-export const REMOVE_COMMENT = gql`
-  mutation removeComment($monsterId: ID!, $commentId: ID!) {
-    removeComment(monsterId: $monsterId, commentId: $commentId) {
-      _id
-      comments {
+      inquiries {
         _id
-        commentText
+        inquiryText
+        inquiryAuthor
+        createdAt
       }
     }
   }
 `;
 
-export const UPDATE_COMMENT = gql`
-  mutation updateComment(
-    $monsterId: ID!
-    $commentId: ID!
-    $commentText: String!
+export const UPDATE_INQUIRY = gql`
+  mutation updateInquiry(
+    $listingId: ID!
+    $inquiryId: ID!
+    $inquiryText: String!
   ) {
-    updateComment(
-      monsterId: $monsterId
-      commentId: $commentId
-      commentText: $commentText
+    updateInquiry(
+      listingId: $listingId
+      inquiryId: $inquiryId
+      inquiryText: $inquiryText
     ) {
       _id
-      comments {
+      inquiries {
         _id
-        commentText
+        inquiryText
+        inquiryAuthor
+        createdAt
       }
-    }
-  }
-`;
-
-export const UPDATE_MONSTER = gql`
-  mutation updateMonster(
-    $monsterId: ID!
-    $monsterName: String
-    $type: String
-    $habitat: String
-    $weaknesses: [String]
-  ) {
-    updateMonster(
-      monsterId: $monsterId
-      monsterName: $monsterName
-      type: $type
-      habitat: $habitat
-      weaknesses: $weaknesses
-    ) {
-      _id
-      monsterName
-      type
-      habitat
-      weaknesses
     }
   }
 `;
